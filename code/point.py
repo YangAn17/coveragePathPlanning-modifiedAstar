@@ -5,7 +5,7 @@ class point:
         
         参数：
         position : list
-            表示点的坐标，例如 [x, y, z]
+            表示点的坐标，例如 [x, y]
         covered : bool
             表示点是否被覆盖，True 表示被覆盖，False 表示未被覆盖
         x1 : float
@@ -24,9 +24,9 @@ class point:
 # 测试示例
 if __name__ == "__main__":
     # 创建一个位置为 (1, 2, 3)、未被覆盖、自身活动值为 0.1、周围效应活动值为 0.2、方向效应活动值为 0.3 的点
-    pt1 = point([1, 2, 3], False, 0.1, 0.2, 0.3)
+    pt1 = point([1, 2], False, 0.1, 0.2, 0.3)
     # 打印结果
-    print(pt1.position)  # [1, 2, 3]
+    print(pt1.position)  # [1, 2]
     print(pt1.covered)  # False
     print(pt1.x1)  # 0.1
     print(pt1.x2)  # 0.2
