@@ -1,4 +1,4 @@
-class Robot3:
+class robot3:
     def __init__(self):
         """
         初始化方法，用于创建Robot3类的实例对象
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # 创建坐标网格
     X0, Y0 = np.meshgrid(x0, y0)
     # 创建一个Robot3对象
-    robot = Robot3()
+    robot = robot3()
     # 设置属性值
     robot.x = 0
     robot.y = 0
