@@ -1,5 +1,5 @@
 class point:
-    def __init__(self, position, covered, x1, x2, x3):
+    def __init__(self, position=[0, 0], covered=False, x1=0, x2=0, x3=0):
         """
         初始化方法，用于创建 Point 类的实例对象
         
@@ -25,8 +25,10 @@ class point:
 if __name__ == "__main__":
     # 创建一个位置为 (1, 2, 3)、未被覆盖、自身活动值为 0.1、周围效应活动值为 0.2、方向效应活动值为 0.3 的点
     pt1 = point([1, 2], False, 0.1, 0.2, 0.3)
+    around_points = [point()]
     # 打印结果
-    print(pt1.position)  # [1, 2]
+    print(type(around_points))
+    print(pt1.position[0])  # [1, 2]
     print(pt1.covered)  # False
     print(pt1.x1)  # 0.1
     print(pt1.x2)  # 0.2
