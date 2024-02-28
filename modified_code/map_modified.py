@@ -112,8 +112,8 @@ if __name__ == "__main__":
         df.to_csv(file_path, index=False)
 
     # 生成随机障碍物并保存为CSV文件
-    generate_obstacles_csv(20, 15, 5, 'modified_code/obstacles.csv')
+    generate_obstacles_csv(20, 15, 5, 'data/obstacles.csv')
 
     # 从CSV文件读取障碍物并创建地图
-    obstacles = map_read(20, 15, 'modified_code/obstacles.csv')
+    obstacles = map_read(20, 15, 'data/obstacles.csv')
     print("障碍物坐标：", obstacles)
