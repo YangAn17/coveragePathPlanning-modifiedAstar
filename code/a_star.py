@@ -86,7 +86,7 @@ if __name__ == "__main__":
         points.append(row)
 
     # 定义起点
-    start_point = point([0, 0])
+    start_point = point([2, 2])
 
     # 调用 A* 算法函数
     path, current = a_star(start_point, points, obstacles)

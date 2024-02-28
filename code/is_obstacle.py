@@ -4,7 +4,7 @@ def is_obstacle(position, obstacles):
     
     参数：
     position : list
-        当前点的二维数组坐标 [x, y]
+        当前点坐标 [x, y]
     obstacles : list of lists
         障碍物信息，每个障碍物是一个列表 [x, y, length, width]
     
