@@ -7,25 +7,25 @@ def repulsion(n, x, y, X, Y, r, R, g2, g3, d, t):
     参数：
     n: int
         无人机数量。
-    x, y: double
+    x, y: float
         当前无人机的坐标。
     X, Y: list
         所有无人机的坐标列表。
-    r: double 
+    r: float 
         无人机距离地图边缘的最小距离。
     R: douoble
         无人机之间的最小距离。
-    g2: double
+    g2: float
         与墙壁碰撞斥力系数。
-    g3: double
+    g3: float
         与其他无人机碰撞斥力系数。
     d: 
         地图的大小。
-    t: double
+    t: float
         时间参数，用于判断是否进行碰撞避免计算。
 
     返回值：
-    vxrepulsion, vyrepulsion: double
+    vxrepulsion, vyrepulsion: float
         无人机受到的斥力在横向和纵向上的分量。
     """
     vxcol0 = np.zeros(n)  # 无人机与无人机斥力在横坐标的分量
