@@ -3,17 +3,17 @@ def move_rule(max_index, around_points, current_index, map_size):
     根据移动规则确定下一步的索引位置。
 
     参数：
-        max_index: int
+    max_index: int
         最大索引，用于指示当前点的索引位置。
-        around_points: list
+    around_points: list
         周围点的信息，包括位置和状态。
-        current_index: tuple
+    current_index: tuple
         当前点的索引。
-        map_size: int
+    map_size: int
         地图的大小。
 
     返回值：
-        index: int
+    index: int
         根据移动规则确定的下一步的索引位置。
     """
     # 默认情况下保持当前位置

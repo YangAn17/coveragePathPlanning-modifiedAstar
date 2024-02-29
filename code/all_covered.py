@@ -3,11 +3,11 @@ def all_covered(points):
     检查地图上的所有点是否都被覆盖了。
 
     参数：
-        points: list of Point class
+    points: list of Point class
         表示地图上的所有点。
 
     返回值：
-        bool: bool
+    bool: bool
         表示所有点是否都被覆盖了。
     """
     all_covered = True  # 初始化为True，表示所有点都被覆盖了

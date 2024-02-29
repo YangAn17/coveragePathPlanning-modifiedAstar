@@ -5,13 +5,18 @@ def plot3d_obstacle(obstacles, T0):
     根据障碍物的位置绘制3D地图，并将障碍物区域的高度设置为10。
 
     参数：
-        obstacles: 包含障碍物坐标的列表。
-        T0: 二维数组，表示地图的高度。
+    obstacles: list of lists
+        包含障碍物坐标的列表。
+    T0: list of lists
+        二维数组，表示地图的高度。
 
     返回值：
-        co: 包含障碍物的 x 轴索引的数组。
-        ro: 包含障碍物的 y 轴索引的数组。
-        T0: 更新后的地图高度数组。
+    co: list
+        包含障碍物的 x 轴索引的数组。
+    ro: list
+        包含障碍物的 y 轴索引的数组。
+    T0: ;list of lists
+        更新后的地图高度数组。
     """
     co = []
     ro = []

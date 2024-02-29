@@ -3,7 +3,7 @@ class point:
         """
         初始化方法，用于创建 Point 类的实例对象
         
-        参数：
+        属性：
         position : list
             表示点的坐标，例如 [x, y]
         covered : bool
