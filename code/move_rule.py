@@ -16,6 +16,11 @@ def move_rule(max_index, around_points, current_index, map_size):
     index: int
         根据移动规则确定的下一步的索引位置。
     """
+
+    # 运行方向的索引位置
+    # | 1 | 2 | 3 |
+    # | 4 | # | 5 |
+    # | 6 | 7 | 8 |
     # 默认情况下保持当前位置
     index = max_index
 
