@@ -22,13 +22,13 @@ def all_covered(points):
 
 # 测试示例
 if __name__ == "__main__":
-    from Point import point
+    from Point import Point
     # 创建一个简单的地图，表示3x3的网格，所有点都被覆盖了
-    points_covered = [[point(covered=1) for _ in range(3)] for _ in range(3)]
+    points_covered = [[Point(covered=1) for _ in range(3)] for _ in range(3)]
     print("所有点都被覆盖了：", all_covered(points_covered))
 
     # 创建一个简单的地图，表示3x3的网格，其中一个点未被覆盖
-    points_uncovered = [[point(covered=1) for _ in range(3)] for _ in range(3)]
+    points_uncovered = [[Point(covered=1) for _ in range(3)] for _ in range(3)]
     points_uncovered[1][1].covered = 0  # 将一个点的covered属性设置为0，表示未被覆盖
     print("存在未被覆盖的点：", all_covered(points_uncovered))
     

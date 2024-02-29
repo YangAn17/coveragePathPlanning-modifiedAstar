@@ -43,10 +43,7 @@ def target_point(x, y, path, number, Path_length):
 
 # 测试示例
 if __name__ == "__main__":
-    class PathPoint:
-        def __init__(self, position):
-            self.position = position
-
+    from Point import Point as PathPoint
     # 构造路径信息
     path = [PathPoint([1, 2]), PathPoint([3, 4]), PathPoint([5, 6])]
     # 当前位置

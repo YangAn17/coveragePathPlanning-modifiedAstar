@@ -55,11 +55,11 @@ def point_parameter(path, points, map_size):
 
 # 测试示例
 if __name__ == "__main__":
-    from Point import point
+    from Point import Point
     # 创建一个包含路径点的列表
-    path = [point([0, 0]), point([0, 1]), point([1, 1]), point([1, 2]), point([2, 2])]
+    path = [Point([0, 0]), Point([0, 1]), Point([1, 1]), Point([1, 2]), Point([2, 2])]
     # 创建一个包含地图点信息的二维列表
-    points = [[point([0, 0]) for _ in range(5)] for _ in range(5)]
+    points = [[Point([0, 0]) for _ in range(5)] for _ in range(5)]
     # 设置地图的大小
     map_size = 5
 
