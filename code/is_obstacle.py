@@ -15,7 +15,7 @@ def is_obstacle(position, obstacles):
     for obstacle in obstacles:
         x, y = position
         obstacle_x, obstacle_y, length, width = obstacle
-        if x >= obstacle_x and y >= obstacle_y and x < obstacle_x + length and y < obstacle_y + width:
+        if x >= obstacle_x and y >= obstacle_y and x <= obstacle_x + length and y <= obstacle_y + width:
             return True  # 在障碍物范围内
     return False  # 不在障碍物范围内
 
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     obstacles = [[1, 1, 3, 2], [5, 3, 2, 4], [10, 8, 3, 2]]  # 障碍物信息
     position1 = [2, 2]  # 在第一个障碍物范围内
     position2 = [5, 4]  # 在第二个障碍物范围内
-    position3 = [7, 7]  # 不在任何障碍物范围内
+    position3 = [7, 9]  # 不在任何障碍物范围内
 
     print(is_obstacle(position1, obstacles))  # True
     print(is_obstacle(position2, obstacles))  # True

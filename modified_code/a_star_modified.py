@@ -2,18 +2,20 @@
 # 改进思路，point类增加importance属性，每次选择目标点时，选择importance最大的点作为目标点
 # 当所有未覆盖的点importance相同时，选择距离最近的点作为目标点
 #
+import sys
+sys.path.append('./code')
 
 import math
 from is_obstacle import is_obstacle
 from in_map import in_map
 from a_star_function import a_star_function
-from Point import point
+from Point import Point
 
 def a_star(current_point, points, obstacles):
     min_dis = len(points)**2  # 初始化当前点到目标点的最小距离
     current_point.covered = True  # 将当前点的covered标志位设置为1（表示已覆盖）
     points[current_point.position[0]][current_point.position[1]].covered = True  # 将当前点的covered标志位设置为1（表示已覆盖）
-    target_point = point()  # 初始化目标点
+    target_point = Point()  # 初始化目标点
     around_points = []  # 初始化周围点
     last_position = [0, 0]  # 初始化最后的位置
     path = [current_point]  # 将当前点添加到路径中
@@ -78,7 +80,7 @@ def a_star(current_point, points, obstacles):
 
 # 测试示例
 if __name__ == "__main__":
-    from Point import point
+    from Point import Point
     # 定义障碍物
     obstacles = [[2, 3, 1, 1], [3, 4, 1, 2], [4, 5, 2, 1]]  # 障碍物的位置坐标
 
@@ -87,16 +89,16 @@ if __name__ == "__main__":
     for i in range(5):
         row = []
         for j in range(5):
-            row.append(point([i, j]))  # 初始化所有点未覆盖
+            row.append(Point([i, j]))  # 初始化所有点未覆盖
         points.append(row)
 
     # 定义起点
-    start_point = point([0, 0])
+    start_point = Point([0, 0])
 
     # 调用 A* 算法函数
     path, current = a_star(start_point, points, obstacles)
 
     # 打印路径
     print("Path:")
-    for point in path:
-        print(point.position)
+    for Point in path:
+        print(Point.position)
