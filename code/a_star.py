@@ -5,14 +5,16 @@ from a_star_function import a_star_function
 from Point import Point
 
 def a_star(current_point, points, obstacles):
+    count = 0
+    current = Point()       # 初始化返回点
+    target_point = Point()  # 初始化目标点
+    around_points = []      # 初始化周围点
+    last_position = [0, 0]  # 初始化最后的位置
+
+    path = [current_point]  # 将当前点添加到路径中
     min_dis = len(points)**2  # 初始化当前点到目标点的最小距离
     current_point.covered = True  # 将Agent当前点的covered设置为1（表示已覆盖）
     points[current_point.position[0]][current_point.position[1]].covered = True  # 将Map当前点的covered设置为1（表示已覆盖）
-    target_point = Point()  # 初始化目标点
-    around_points = []  # 初始化周围点
-    last_position = [0, 0]  # 初始化最后的位置
-    path = [current_point]  # 将当前点添加到路径中
-    count = 0
 
     # 找到最近的未覆盖点作为目标点
     for i in range(len(points[0])):

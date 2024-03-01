@@ -9,11 +9,11 @@ class Point:
         covered : bool
             表示点是否被覆盖，True 表示被覆盖，False 表示未被覆盖
         x1 : float
-            表示自身活动值
+            表示自身影响值
         x2 : float
-            表示周围效应活动值
+            表示距离效应影响值
         x3 : float
-            表示方向效应活动值
+            表示方向效应影响值
         """
         self.position = position
         self.covered = covered
