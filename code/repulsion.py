@@ -34,6 +34,7 @@ def repulsion(number_uav, current_x, current_y, X_uavs, Y_uavs, r_wall, R_uav, g
 
     # 避免无人机与无人机碰撞速度（采用半弹簧方法）
     for i in range(number_uav):
+        # 计算无人机与无人机之间的距离
         distance_uavs = np.sqrt((current_x - X_uavs[i]) ** 2 + (current_y - Y_uavs[i]) ** 2)
         if distance_uavs < R_uav and (current_x - X_uavs[i]) != 0 and (current_y - Y_uavs[i]) != 0:
             threp = np.arctan2(current_y - Y_uavs[i], current_x - X_uavs[i])

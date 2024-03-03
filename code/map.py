@@ -27,8 +27,8 @@ def map(map_size, obs_num):
     for i in range(obs_num):
         length = np.random.randint(1, 6)
         width = np.random.randint(1, 5)
-        x = np.random.randint(0, map_size - length + 1)  # 障碍物的左下角横坐标（保证不超出地图范围）
-        y = np.random.randint(0, map_size - width + 1)   # 障碍物的左下角纵坐标（保证不超出地图范围）
+        x = np.random.randint(0, (map_size + 1) - length)  # 障碍物的左下角横坐标（保证不超出地图范围）
+        y = np.random.randint(0, (map_size + 1) - width)   # 障碍物的左下角纵坐标（保证不超出地图范围）
         obstacles.append([x, y, x + length, y + width])  # 存入obstacles列表
         plt.Rectangle((x, y), length, width, facecolor=[0.3, 0.3, 0.3])  # 创建一个矩形对象表示障碍物
         plt.gca().add_patch(plt.Rectangle((x, y), length, width, facecolor=[0.3, 0.3, 0.3]))  # 将矩形对象添加到当前图形中显示

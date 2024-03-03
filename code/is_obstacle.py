@@ -13,18 +13,18 @@ def is_obstacle(position, obstacles):
         如果在障碍物范围内返回 True，否则返回 False
     """
     for obstacle in obstacles:
-        x, y = position
-        obstacle_x, obstacle_y, length, width = obstacle
-        if x >= obstacle_x and y >= obstacle_y and x <= obstacle_x + length and y <= obstacle_y + width:
+        x , y = position[0] + 0.5, position[1] + 0.5  # 以点的中心为坐标(离散空间换算到连续空间)
+        obstacle_x1, obstacle_y1, obstacle_x2, obstacle_y2 = obstacle
+        if x >= obstacle_x1 and y >= obstacle_y1 and x <= obstacle_x2 and y <= obstacle_y2:
             return True  # 在障碍物范围内
     return False  # 不在障碍物范围内
 
 # 测试示例
 if __name__ == "__main__":
-    obstacles = [[1, 1, 3, 2], [5, 3, 2, 4], [10, 8, 3, 2]]  # 障碍物信息
-    position1 = [2, 2]  # 在第一个障碍物范围内
-    position2 = [5, 4]  # 在第二个障碍物范围内
-    position3 = [7, 9]  # 不在任何障碍物范围内
+    obstacles = [[1, 1, 3, 2], [10, 8, 3, 2]]  # 障碍物信息
+    position1 = [1, 1]      # 在第一个障碍物范围内
+    position2 = [0, 0]      # 在第一个障碍物范围内
+    position3 = [3, 2]      # 不在任何障碍物范围内
 
     print(is_obstacle(position1, obstacles))  # True
     print(is_obstacle(position2, obstacles))  # True

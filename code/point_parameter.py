@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # 创建一个包含路径点的列表
     path = [Point([0, 0]), Point([0, 1]), Point([1, 1]), Point([1, 2]), Point([2, 2])]
     # 创建一个包含地图点信息的二维列表
-    points = [[Point() for _ in range(5)] for _ in range(5)]
+    points = [[Point(x1=100) for _ in range(5)] for _ in range(5)]
     # 设置地图的大小
     map_size = 5
 

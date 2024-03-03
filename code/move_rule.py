@@ -61,8 +61,8 @@ def move_rule(current_index, around_points, current_postion, map_size):
     ### 丁字路口处理在离散空间进行，注意索引和map_size计算 ###
     if around_points[0].x1 != 100 and around_points[3].x1 != 100 and around_points[5].x1 != 100 \
             and around_points[1].x1 == 100 and around_points[6].x1 == 100:
-        if current_postion[0] == map_size or current_postion[0] == 0:
-            if current_postion[1] >= map_size / 2:
+        if current_postion[0] == (map_size - 1) or current_postion[0] == 0: 
+            if current_postion[1] >= (map_size - 1) / 2:
                 index = 4
             else:
                 index = 3
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     around_points[6].x1 = 100
 
     # 设定当前点的位置和地图大小
-    current_postion = (3, 3)
+    current_postion = (10, 10)
     map_size = 10
 
     # 测试移动规则
