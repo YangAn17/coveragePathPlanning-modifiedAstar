@@ -1,6 +1,6 @@
 import numpy as np
 
-def plot3d_obstacle(obstacles, T0):
+def plot3d_obstacle(obstacles, map_size):
     """
     根据障碍物的位置绘制3D地图，并将障碍物区域的高度设置为10。
 
@@ -20,36 +20,38 @@ def plot3d_obstacle(obstacles, T0):
     """
     co = []
     ro = []
+    T0 = np.zeros((map_size, map_size))  # 创建地图高度数组
 
     # 设置障碍物区域的高度
     ### 障碍设置在连续空间中进行，注意索引和map_size计算 ###
     for obs in obstacles:
         x1, y1, x2, y2 = obs
-        T0[x1:x2+1, y1:y2+1] = 10   # 设置障碍物区域的高度为10
-        co.extend(list(range(x1, x2+1)))
-        ro.extend(list(range(y1, y2+1)))
+        T0[x1:x2, y1:y2] = 10   # 设置障碍物区域的高度为10
+        co.extend(list(range(x1, x2)))
+        ro.extend(list(range(y1, y2)))
 
     return co, ro, T0
 
 # 测试示例
 if __name__ == "__main__":
+    import sys
+    sys.path.append('./code')
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
+    from map import map
     # 创建一个地图并获取障碍物列表和地图高度数组
-    map_size = 10
-    obstacles = [[0, 2, 1, 3]]
-    T0 = np.zeros((map_size + 1, map_size + 1))
+    obstacles = map(10, 2)
 
     # 调用函数绘制3D地图并更新地图高度
-    co, ro, T0 = plot3d_obstacle(obstacles, T0)
+    co, ro, T0 = plot3d_obstacle(obstacles, 10)
 
     # 创建网格
-    X, Y = np.meshgrid(range(map_size + 1), range(map_size + 1))
+    X, Y = np.meshgrid(range(10), range(10))
 
     # 绘制3D地图
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.plot_surface(Y, X, T0, cmap='viridis')
+    ax.plot_surface(X, Y, T0, cmap='viridis')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Height')

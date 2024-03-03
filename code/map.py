@@ -23,15 +23,15 @@ def map(map_size, obs_num):
     obstacles = []
 
     # 随机生成障碍物（注释掉的部分）
+    ### 障碍生成在连续空间中进行，注意索引和map_size计算 ###
     for i in range(obs_num):
         length = np.random.randint(1, 6)
         width = np.random.randint(1, 5)
-        x = np.random.randint(0, map_size - length)  # 障碍物的左下角横坐标（保证不超出地图范围）
-        y = np.random.randint(0, map_size - width)   # 障碍物的左下角纵坐标（保证不超出地图范围）
+        x = np.random.randint(0, map_size - length + 1)  # 障碍物的左下角横坐标（保证不超出地图范围）
+        y = np.random.randint(0, map_size - width + 1)   # 障碍物的左下角纵坐标（保证不超出地图范围）
         obstacles.append([x, y, x + length, y + width])  # 存入obstacles列表
         plt.Rectangle((x, y), length, width, facecolor=[0.3, 0.3, 0.3])  # 创建一个矩形对象表示障碍物
         plt.gca().add_patch(plt.Rectangle((x, y), length, width, facecolor=[0.3, 0.3, 0.3]))  # 将矩形对象添加到当前图形中显示
-
 
     # 手动添加障碍物
     # obstacles.append([0, 5, 2, 7])

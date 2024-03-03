@@ -30,8 +30,8 @@ def map(map_width, map_height, obs_num):
     for i in range(obs_num):
         length = np.random.randint(1, 6)
         width = np.random.randint(1, 5)
-        x = np.random.randint(0, map_width - length)  # 障碍物的左下角横坐标（保证不超出地图范围）
-        y = np.random.randint(0, map_height - width)  # 障碍物的左下角纵坐标（保证不超出地图范围）
+        x = np.random.randint(0, map_width - length + 1)  # 障碍物的左下角横坐标（保证不超出地图范围）
+        y = np.random.randint(0, map_height - width + 1)  # 障碍物的左下角纵坐标（保证不超出地图范围）
         obstacles.append([x, y, x + length, y + width])  # 将障碍物的左下角和右上角坐标存入obstacles列表
         plt.Rectangle((x, y), length, width, facecolor=[0.3, 0.3, 0.3])  # 创建一个矩形对象表示障碍物
         plt.gca().add_patch(plt.Rectangle((x, y), length, width, facecolor=[0.3, 0.3, 0.3]))  # 将矩形对象添加到当前图形中显示
@@ -112,8 +112,8 @@ if __name__ == "__main__":
         df.to_csv(file_path, index=False)
 
     # 生成随机障碍物并保存为CSV文件
-    generate_obstacles_csv(20, 15, 5, 'data/obstacles.csv')
+    generate_obstacles_csv(10, 10, 2, 'data/obstacles.csv')
 
     # 从CSV文件读取障碍物并创建地图
-    obstacles = map_read(20, 15, 'data/obstacles.csv')
+    obstacles = map_read(10, 10, 'data/obstacles.csv')
     print("障碍物坐标：", obstacles)
