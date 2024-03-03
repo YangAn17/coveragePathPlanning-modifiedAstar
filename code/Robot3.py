@@ -43,15 +43,15 @@ if __name__ == "__main__":
     import numpy as np
 
     # 生成小网格中心的横坐标和纵坐标
-    x0 = np.arange(0, 10.0, 1.0)
-    y0 = np.arange(0, 10.0, 1.0)
+    x0 = np.arange(0.5, 10.5, 1.0)
+    y0 = np.arange(0.5, 10.5, 1.0)
     # 创建坐标网格
     X0, Y0 = np.meshgrid(x0, y0)
     # 创建一个Robot3对象
     robot = robot3()
     # 设置属性值
-    robot.x = 5
-    robot.y = 5
+    robot.x = 0.5
+    robot.y = 0.55
     robot.L = len(x0)
     robot.X0 = X0
     robot.Y0 = Y0
