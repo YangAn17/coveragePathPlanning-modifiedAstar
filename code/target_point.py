@@ -1,6 +1,6 @@
 import math
 
-def target_point(x, y, number, path):
+def target_point(x, y, path, number, Path_length):
     """
     根据当前位置和路径信息计算目标点的函数
 
@@ -24,15 +24,14 @@ def target_point(x, y, number, path):
     number : int
         更新后的路径点编号
     """
-    if number <= len(path) + 2:
+    if number <= Path_length + 2:
         Cover_x = path[number - 1].position[0] + 0.5 - x    # 0.5是为了让目标点在路径点的中心, 但是不能适应所有情况  
         Cover_y = path[number - 1].position[1] + 0.5 - y
-
-        # 如果当前位置到目标点的距离小于0.1，就更新目标点
         if math.sqrt(Cover_x**2 + Cover_y**2) < 0.1:
             number += 1
 
-        Cover_Th = math.atan2(Cover_y, Cover_x)      
+        Cover_Th = math.atan2(Cover_y, Cover_x)
+
         Target_x = 1 * math.cos(Cover_Th)   # 默认1是栅格的大小
         Target_y = 1 * math.sin(Cover_Th)
     else:
@@ -55,6 +54,6 @@ if __name__ == "__main__":
     Path_length = len(path)
 
     # 计算目标点
-    Target_x, Target_y, number = target_point(x, y, number, path)
+    Target_x, Target_y, number = target_point(x, y, path, number, Path_length)
     print("目标点坐标：", Target_x, Target_y)
     print("更新后的路径点编号：", number)
