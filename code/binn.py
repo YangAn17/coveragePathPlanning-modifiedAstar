@@ -34,7 +34,7 @@ def binn(map_size, obstacles):
 
     # 设置起始点坐标
     # 如果进行多机协同覆盖，应设置多个起始点
-    current_index = [1, 1]
+    current_index = [0, 0]
 
     # 根据障碍物信息将障碍物点标记为已覆盖
     for i in range(map_size):
@@ -52,9 +52,9 @@ def binn(map_size, obstacles):
     while True:
         # 检查当前点周围的8个点是否存在        
         # 运行方向的索引位置
-        # | 1 | 2 | 3 |
-        # | 4 | # | 5 |
-        # | 6 | 7 | 8 |
+        # | 2 | 4 | 7 |
+        # | 1 | # | 6 |
+        # | 0 | 3 | 5 |
         around_flag, around_points = find_inmap_points(points[current_index[0]][current_index[1]], points)
 
         # 根据周围点的情况设置x1, x2, x3
@@ -134,8 +134,7 @@ if __name__ == "__main__":
     map_size = 10
 
     # 定义障碍物
-    from map import map
-    obstacles = map(map_size, 2)
+    obstacles = [[2, 2, 2, 2], [5, 5, 2, 2], [7, 7, 2, 2]]
 
     # 调用binn函数
     points, path = binn(map_size, obstacles)
@@ -144,3 +143,33 @@ if __name__ == "__main__":
     print("Path:")
     for point in path:
         print(point.position)
+
+    import matplotlib.pyplot as plt
+
+    def visualize_path(points, path):
+        # 提取所有覆盖点的坐标
+        covered_points = [point.position for point in path]
+
+        # 创建地图
+        map_grid = [[0] * len(points) for _ in range(len(points))]
+
+        # 将覆盖点标记为1
+        for x, y in covered_points:
+            map_grid[x][y] = 1
+
+        # 绘制地图
+        plt.imshow(map_grid, cmap='Greys', origin='lower')
+
+        # 绘制路径
+        path_x = [point.position[1] for point in path]
+        path_y = [point.position[0] for point in path]
+        plt.plot(path_x, path_y, marker='o', color='r')
+
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.title('Coverage Path')
+        plt.grid(color='b', linestyle='--', linewidth=1)
+        plt.show()
+
+    # 调用函数绘制路径
+    visualize_path(points, path)
