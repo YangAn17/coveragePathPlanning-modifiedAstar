@@ -51,5 +51,5 @@ def map(map_size, obs_num):
 
 # 测试示例
 if __name__ == "__main__":
-    obstacles = map(100, 20)
+    obstacles = map(15, 2)
     print("障碍物坐标：", obstacles)
