@@ -21,7 +21,7 @@ def point_parameter(path, points, map_size):
         转弯次数。
     """
     path_length = 0
-    last_direction_flag = 0 # 上一个时刻的运行方向索引
+    last_direction_flag = 0 # 上一个时刻的运行方向
     turn_number = 0
     nice_path = 0
 
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # 创建一个包含路径点的列表
     path = [Point([0, 0]), Point([0, 1]), Point([1, 1]), Point([1, 2]), Point([2, 2])]
     # 创建一个包含地图点信息的二维列表
-    points = [[Point([0, 0]) for _ in range(5)] for _ in range(5)]
+    points = [[Point() for _ in range(5)] for _ in range(5)]
     # 设置地图的大小
     map_size = 5
 
