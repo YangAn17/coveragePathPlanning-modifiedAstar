@@ -34,7 +34,7 @@ def binn(map_size, obstacles):
 
     # 设置起始点坐标
     # 如果进行多机协同覆盖，应设置多个起始点
-    current_index = [0, 0]
+    current_index = [4, 4]
 
     # 根据障碍物信息将障碍物点标记为已覆盖
     for i in range(map_size):
@@ -165,9 +165,14 @@ if __name__ == "__main__":
         path_y = [point.position[0] for point in path]
         plt.plot(path_x, path_y, marker='o', color='r')
 
+        # 添加箭头
+        dx = [path_x[i+1] - path_x[i] for i in range(len(path_x)-1)]
+        dy = [path_y[i+1] - path_y[i] for i in range(len(path_y)-1)]
+        plt.quiver(path_x[:-1], path_y[:-1], dx, dy, scale_units='xy', angles='xy', scale=1, color='r')
+
         plt.xlabel('X')
         plt.ylabel('Y')
-        plt.title('Coverage Path')
+        plt.title('Coverage Path with Arrows')
         plt.grid(color='b', linestyle='--', linewidth=1)
         plt.show()
 
