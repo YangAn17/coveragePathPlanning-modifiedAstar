@@ -18,38 +18,26 @@ def find_inmap_points(current_point, points):
         当前点周围可达的点列表
     """
     # around_points = [Point() for i in range(8)]  # 初始化周围可达的点列表
+    # 运行方向的索引位置
+    # | 2 | 4 | 7 |
+    # | 1 | # | 6 |
+    # | 0 | 3 | 5 |
     around_points = []  # 初始化周围可达的点列表
     around_flag = [0] * 8   # 初始化周围可达点的状态数组
+    index = 0   # 初始化索引位置
     for i in range(-1, 2):
         for j in range(-1, 2):
+            # 跳过当前点本身
             if i == 0 and j == 0:
-                continue    # 跳过当前点本身
+                continue
+            # 计算周围点坐标
             x = current_point.position[0] + i
             y = current_point.position[1] + j
+            # 判断周围点是否在地图内
             if in_map([x, y], len(points)):
-                # 计算索引位置
-                # around_points[index-1] = points[x][y]
                 around_points.append(points[x][y])
-                if i == -1:
-                    if j == -1:
-                        index = 6
-                    elif j == 0:
-                        index = 4
-                    else:
-                        index = 1
-                elif i == 0:
-                    if j == -1:
-                        index = 7
-                    elif j == 1:
-                        index = 2
-                else:
-                    if j == -1:
-                        index = 8
-                    elif j == 0:
-                        index = 5
-                    else:
-                        index = 3
-                around_flag[index-1] = 1
+                around_flag[index] = 1
+            index += 1
     
     return around_flag, around_points
 
@@ -57,16 +45,17 @@ def find_inmap_points(current_point, points):
 if __name__ == "__main__":
     from Point import Point
 
+    map_size = 5
     # 定义地图点
     points = []
-    for i in range(5):
+    for i in range(map_size):
         row = []
-        for j in range(5):
+        for j in range(map_size):
             row.append(Point([i, j]))  # 初始化所有点未覆盖
         points.append(row)
 
     # 定义起点
-    start_point = Point([0, 1])
+    start_point = Point([4, 4])
 
     # 获取当前点周围可达的点及其状态数组
     around_flag, around_points = find_inmap_points(start_point, points)
