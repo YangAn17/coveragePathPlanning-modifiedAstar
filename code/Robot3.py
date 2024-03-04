@@ -1,3 +1,5 @@
+import numpy as np
+
 class robot3:
     def __init__(self):
         """
@@ -29,19 +31,15 @@ class robot3:
         返回：list
             包含Agent到各栅格中心的距离的二维列表
         """
-        s = []
+        s = np.zeros((self.L, self.L))
         for i in range(self.L):
-            row = []
             for j in range(self.L):
                 distance = ((self.X0[i][j] - self.x) ** 2 + (self.Y0[i][j] - self.y) ** 2) ** 0.5
-                row.append(distance)
-            s.append(row)
+                s[i][j] = distance
         return s
 
 # 测试示例
 if __name__ == "__main__":
-    import numpy as np
-
     # 生成小网格中心的横坐标和纵坐标
     x0 = np.arange(0.5, 10.5, 1.0)
     y0 = np.arange(0.5, 10.5, 1.0)
