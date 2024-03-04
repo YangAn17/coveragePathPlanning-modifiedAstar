@@ -34,7 +34,7 @@ def plot3d_obstacle(obstacles, T0):
 # 测试示例
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
+    from mpl_toolkits.mplot3d import Axes3D as ax
     # 创建一个地图并获取障碍物列表和地图高度数组
     map_size = 10
     obstacles = [[0, 2, 1, 3]]
