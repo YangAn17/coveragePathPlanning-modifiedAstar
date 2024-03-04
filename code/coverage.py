@@ -67,11 +67,11 @@ def coverage(s, T, r0_coverage, x_current, y_current, X0, Y0, Vth, g1, g4, C, co
         T0[i] = T[row2[i], rol2[i]]  # 将所有点的栅格值存入T0数组
 
     # 无人机覆盖控制速度
-    # row3, rol3 = np.where(T0 == np.min(T0))  # 覆盖范围内覆盖值最小的点(坐标索引)
-    row3, rol3 = np.where(T == np.min(T))  # 覆盖范围内覆盖值最小的点(坐标索引)
+    rol3 = np.where(T0 == np.min(T0))[0]  # 覆盖范围内覆盖值最小的点(坐标索引)
+    # row3, rol3 = np.where(T == np.min(T))  # 覆盖范围内覆盖值最小的点(坐标索引)
     Ct = T0[rol3[0]]  # 得到覆盖范围内最小值
     if Ct != C:  # 当最小值不等于C时
-        h3 = len(row3)  # 得到最小值的个数
+        h3 = len(rol3)  # 得到最小值的个数
         th = np.zeros(h3)  # 初始化th，th为到每个最小值点的角度值
         for i in range(h3):
             dx = X0[row2[rol3[i]], rol2[rol3[i]]] - x_current
