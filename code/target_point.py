@@ -24,9 +24,12 @@ def target_point(x, y, path, number, Path_length):
     number : int
         更新后的路径点编号
     """
-    if number <= Path_length + 2:
-        Cover_x = path[number - 1].position[0] + 0.5 - x    # 0.5是为了让目标点在路径点的中心, 但是不能适应所有情况  
-        Cover_y = path[number - 1].position[1] + 0.5 - y
+    # if number <= Path_length + 2:
+    if number <= Path_length:
+        # Cover_x = path[number - 1].position[0] + 0.5 - x    # 0.5是为了让目标点在路径点的中心, 但是不能适应所有情况  
+        # Cover_y = path[number - 1].position[1] + 0.5 - y
+        Cover_x = path[number - 1].position[0] - x
+        Cover_y = path[number - 1].position[1] - y
         if math.sqrt(Cover_x**2 + Cover_y**2) < 0.1:
             number += 1
 
