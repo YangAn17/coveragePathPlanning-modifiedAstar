@@ -34,7 +34,7 @@ def binn(map_size, obstacles):
 
     # 设置起始点坐标
     # 如果进行多机协同覆盖，应设置多个起始点
-    current_index = [4, 4]
+    current_index = [7, 0]
 
     # 根据障碍物信息将障碍物点标记为已覆盖
     for i in range(map_size):
@@ -130,51 +130,51 @@ def binn(map_size, obstacles):
     return points, path
 
 if __name__ == "__main__":
-    # 定义地图大小
-    map_size = 10
-
-    # 定义障碍物
-    obstacles = [[2, 2, 2, 2], [5, 5, 2, 2], [7, 7, 2, 2]]
-
-    # 调用binn函数
+    # 覆盖路径规划算法测试
+    from map import map_read
+    map_size = 81
+    obstacles = map_read(map_size, './data/obstacles_zq.csv')
     points, path = binn(map_size, obstacles)
 
-    # 打印路径
-    print("Path:")
-    for point in path:
-        print(point.position)
+    # # 绘制覆盖路径
+    # import matplotlib.pyplot as plt
+    # import numpy as np
+    # from matplotlib.patches import Rectangle
+    # from matplotlib.patches import FancyArrowPatch
+    # from mpl_toolkits.mplot3d import Axes3D
 
-    import matplotlib.pyplot as plt
+    # def visualize_map(map_size, obstacles, path):
+    #     fig = plt.figure()
+    #     ax = fig.add_subplot(111, projection='3d')
+        
+    #     # 绘制障碍物
+    #     for obstacle in obstacles:
+    #         ax.add_patch(Rectangle((obstacle[0], obstacle[1]), obstacle[2], obstacle[3], color='gray'))
 
-    def visualize_path(points, path):
-        # 提取所有覆盖点的坐标
-        covered_points = [point.position for point in path]
+    #     # 绘制栅格地图边线
+    #     ax.plot([0, map_size, map_size, 0, 0], [0, 0, map_size, map_size, 0], color='black')
 
-        # 创建地图
-        map_grid = [[0] * len(points) for _ in range(len(points))]
+    #     # 绘制路径
+    #     for i in range(len(path) - 1):
+    #         current_point = path[i]
+    #         next_point = path[i + 1]
+    #         ax.plot([current_point[0], next_point[0]], [current_point[1], next_point[1]], zs=0, color='blue')
+    #         # 添加箭头
+    #         arrow = FancyArrowPatch((current_point[0], current_point[1]), (next_point[0], next_point[1]), arrowstyle='->', mutation_scale=20, color='blue')
+    #         ax.add_patch(arrow)
 
-        # 将覆盖点标记为1
-        for x, y in covered_points:
-            map_grid[x][y] = 1
+    #     # 设置图像参数
+    #     ax.set_xlim(0, map_size)
+    #     ax.set_ylim(0, map_size)
+    #     ax.set_zlim(0, 1)  # 为了使路径位于障碍物上方，将z轴限制为较小的范围
+    #     ax.set_xlabel('X')
+    #     ax.set_ylabel('Y')
+    #     ax.set_zlabel('Z')
+    #     plt.title('Coverage Path Planning Visualization')
+    #     plt.show()
 
-        # 绘制地图
-        plt.imshow(map_grid, cmap='Greys', origin='lower')
+    # # 将路径转换为可绘制的格式（每个点取中心）
+    # path_points = np.array([[point.position[0] + 0.5, point.position[1] + 0.5] for point in path])
 
-        # 绘制路径
-        path_x = [point.position[1] for point in path]
-        path_y = [point.position[0] for point in path]
-        plt.plot(path_x, path_y, marker='o', color='r')
-
-        # 添加箭头
-        dx = [path_x[i+1] - path_x[i] for i in range(len(path_x)-1)]
-        dy = [path_y[i+1] - path_y[i] for i in range(len(path_y)-1)]
-        plt.quiver(path_x[:-1], path_y[:-1], dx, dy, scale_units='xy', angles='xy', scale=1, color='r')
-
-        plt.xlabel('X')
-        plt.ylabel('Y')
-        plt.title('Coverage Path with Arrows')
-        plt.grid(color='b', linestyle='--', linewidth=1)
-        plt.show()
-
-    # 调用函数绘制路径
-    visualize_path(points, path)
+    # # 可视化地图和路径
+    # visualize_map(map_size, obstacles, path_points)

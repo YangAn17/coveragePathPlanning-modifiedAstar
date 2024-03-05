@@ -65,26 +65,28 @@ obstacles = map(map_size, obs_num)
 points, path = binn(map_size, obstacles)  # 全覆盖路径规划
 Nice_path, Path_length, turn_number = point_parameter(path, points, map_size)  # 全覆盖算法性能参数
 
-# 创建窗口1：显示二维轨迹
+# 创建窗口1：显示二维轨迹和地图
 plt.figure(1)
 plt.clf()
 plt.Rectangle((0, 0), map_size, map_size)  # 绘制出运动区域
 plt.axis([0, map_size, 0, map_size])  # 显示的画面大小
 plt.axis('equal')
 
-# 绘制障碍物区域
-for i in range(obs_num):
-    plt.Rectangle((obstacles[i][0], obstacles[i][1]), obstacles[i][2] - obstacles[i][0],
-                    obstacles[i][3] - obstacles[i][1], facecolor=(0.3, 0.3, 0.3))
-
 # 绘制网格线
 for i in range(map_size + 1):
     plt.plot([0, map_size], [i, i], color='k')
     plt.plot([i, i], [0, map_size], color='k')
 
-# 绘制无人机和感知范围
+# 绘制障碍物区域
+for i in range(obs_num):
+    plt.Rectangle((obstacles[i][0], obstacles[i][1]), obstacles[i][2] - obstacles[i][0],
+                    obstacles[i][3] - obstacles[i][1], facecolor=(0.3, 0.3, 0.3))
+
+# 绘制UAV和感知范围
+uav_markers = []
 for i in range(M):
-    plt.plot(f[i].x, f[i].y, 'o', markersize=8, color=(a[i], b[i], c[i]))  # 绘制无人机
+    uav_marker = plt.plot(f[i].x, f[i].y, 'o', markersize=8, color=(a[i], b[i], c[i]))  # 绘制无人机
+    uav_markers.append(uav_marker)
     circle = plt.Circle((f[i].x, f[i].y), r0, color=(a[i], b[i], c[i]), fill=False)  # 创建感知范围圆形
     plt.gca().add_patch(circle)  # 将圆形添加到图形对象
 
@@ -132,9 +134,12 @@ for i in range(10000):
             f[m].y = Y[m, i]
             x[m] = X[m, i]  # 更新全部无人机的横坐标、纵坐标
 
-            # 更新轨迹对象的数据
+            # 更新轨迹对象的数据并绘制路径
             h[m].set_xdata(np.append(h[m].get_xdata(), X[m, i]))
             h[m].set_ydata(np.append(h[m].get_ydata(), Y[m, i]))
+
+            # 更新UAV位置
+            uav_markers[m][0].set_data(f[m].x, f[m].y)
 
             # 清除先前的图形并重新绘制新的障碍物区域和地图数据
             ax.collections.clear()
