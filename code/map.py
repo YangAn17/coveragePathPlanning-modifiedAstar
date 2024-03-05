@@ -191,5 +191,5 @@ def map_retangle_read(map_width, map_height, csv_file):
 
 # 测试示例
 if __name__ == "__main__":
-    obstacles = map(15, 2)
-    print("障碍物坐标：", obstacles)
+    obstacles = map_read(81, "./data/obstacles_zq.csv")
+    # print("障碍物坐标：", obstacles)
