@@ -1,5 +1,4 @@
 import math
-import numpy as np
 from Point import Point
 from a_star import a_star
 from move_rule import move_rule
@@ -136,45 +135,10 @@ if __name__ == "__main__":
     obstacles = map_read(map_size, './data/obstacles_zq.csv')
     points, path = binn(map_size, obstacles)
 
-    # # 绘制覆盖路径
-    # import matplotlib.pyplot as plt
-    # import numpy as np
-    # from matplotlib.patches import Rectangle
-    # from matplotlib.patches import FancyArrowPatch
-    # from mpl_toolkits.mplot3d import Axes3D
-
-    # def visualize_map(map_size, obstacles, path):
-    #     fig = plt.figure()
-    #     ax = fig.add_subplot(111, projection='3d')
-        
-    #     # 绘制障碍物
-    #     for obstacle in obstacles:
-    #         ax.add_patch(Rectangle((obstacle[0], obstacle[1]), obstacle[2], obstacle[3], color='gray'))
-
-    #     # 绘制栅格地图边线
-    #     ax.plot([0, map_size, map_size, 0, 0], [0, 0, map_size, map_size, 0], color='black')
-
-    #     # 绘制路径
-    #     for i in range(len(path) - 1):
-    #         current_point = path[i]
-    #         next_point = path[i + 1]
-    #         ax.plot([current_point[0], next_point[0]], [current_point[1], next_point[1]], zs=0, color='blue')
-    #         # 添加箭头
-    #         arrow = FancyArrowPatch((current_point[0], current_point[1]), (next_point[0], next_point[1]), arrowstyle='->', mutation_scale=20, color='blue')
-    #         ax.add_patch(arrow)
-
-    #     # 设置图像参数
-    #     ax.set_xlim(0, map_size)
-    #     ax.set_ylim(0, map_size)
-    #     ax.set_zlim(0, 1)  # 为了使路径位于障碍物上方，将z轴限制为较小的范围
-    #     ax.set_xlabel('X')
-    #     ax.set_ylabel('Y')
-    #     ax.set_zlabel('Z')
-    #     plt.title('Coverage Path Planning Visualization')
-    #     plt.show()
-
-    # # 将路径转换为可绘制的格式（每个点取中心）
-    # path_points = np.array([[point.position[0] + 0.5, point.position[1] + 0.5] for point in path])
-
-    # # 可视化地图和路径
-    # visualize_map(map_size, obstacles, path_points)
+    # 可视化
+    import matplotlib.pyplot as plt
+    x = [point.position[0] for point in path]
+    y = [point.position[1] for point in path]
+    plt.plot(x, y, 'r-')
+    plt.show()
+    print("覆盖路径规划算法测试成功！")
